@@ -1,0 +1,31 @@
+{% extends "layout.html" %} {% block content %}
+<h1>Stock List</h1>
+
+<form method="get">
+	<select name="filter">
+		<option value="">All Stocks</option>
+		<option value="new_intraday_highs">New Intraday Highs</option>
+		<option value="new_closing_highs">New Closing Highs</option>
+		<option value="new_intraday_lows">New Intraday Lows</option>
+		<option value="new_closing_lows">New Closing Lows</option>
+	</select>
+	<input type="submit" />
+</form>
+
+<table class="ui striped table">
+	<thead>
+		<tr>
+			<th>Symbol</th>
+			<th>Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for stock in stocks %}
+		<tr>
+			<td>{{ stock.symbol }}</td>
+			<td><a href="/stock/{{ stock.symbol }}">{{ stock.name }}</a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}
